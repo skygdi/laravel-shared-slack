@@ -1,6 +1,6 @@
 <?php
 
-namespace Pg\Slack\Providers;
+namespace Skygdi\Slack\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

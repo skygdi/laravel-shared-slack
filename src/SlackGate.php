@@ -1,9 +1,9 @@
 <?php
 
-namespace Pg\Slack;
+namespace Skygdi\Slack;
 
 use Illuminate\Support\Facades\Cache;
-use Pg\Slack\Services\SlackService;
+use Skygdi\Slack\Services\SlackService;
 
 class SlackGate
 {

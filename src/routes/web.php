@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Pg\Slack\Http\Controllers\SlackDashboardController;
+use Skygdi\Slack\Http\Controllers\SlackDashboardController;
 
 
 Route::middleware(['web'])->prefix('slack_dashboard')->group(function () {

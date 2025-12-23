@@ -1,10 +1,10 @@
 <?php
 
-namespace Pg\Slack\Http\Controllers;
+namespace Skygdi\Slack\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Pg\Slack\SlackGate;
+use Skygdi\Slack\SlackGate;
 
 class SlackDashboardController extends Controller
 {
