@@ -18,7 +18,7 @@ class SlackService
         //$channel = $channel ?? config('services.slack.default_channel');
 
         $token   = config('slack-gate.bot_token');
-        dump($token);
+        //dump($token);
         $channel = $channel ?? config('slack-gate.default_channel');
 
         if (! $token || ! $channel) {
