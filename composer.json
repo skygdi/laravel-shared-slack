@@ -1,0 +1,16 @@
+{
+  "name": "pg/slack",
+  "version": "dev-main",
+  "autoload": {
+    "psr-4": {
+      "Pg\\Slack\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Pg\\Slack\\Providers\\SlackGateServiceProvider"
+      ]
+    }
+  }
+}
