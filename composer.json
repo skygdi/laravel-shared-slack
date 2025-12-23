@@ -1,7 +1,6 @@
 {
   "name": "skygdi/slack",
   "description": "Shared Slack integration for Laravel",
-  "version": "dev-main",
   "license": "MIT",
   "autoload": {
     "psr-4": {
