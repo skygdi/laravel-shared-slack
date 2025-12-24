@@ -25,9 +25,16 @@ class SlackService
             return false; // or throw exception
         }
 
+        $role = config('slack-gate.role');
+        if( $role ){
+            $text = "[{$role}] " . $text;
+        }
+        
+
         $payload = [
             'channel' => $channel,
             'text'    => $text,
+            'username'=> 'Workder 1',
         ];
 
         if ($blocks) {

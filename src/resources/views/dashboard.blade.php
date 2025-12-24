@@ -44,46 +44,6 @@
             </div>
         </div>
 
-        {{-- Inventory update toggle card --}}
-        <div class="col-md-6 mb-4">
-            <div class="card shadow-sm">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <span>Inventory Updates</span>
-                    <span class="badge {{ $inventoryUpdateSuspended ? 'bg-danger' : 'bg-success' }}" id="inventory-status-badge">
-                        {{ $inventoryUpdateSuspended ? 'Suspended' : 'Active' }}
-                    </span>
-                </div>
-                <div class="card-body">
-                    <p class="mb-2 text-muted">
-                        Toggle this to temporarily pause all Shopify inventory update jobs
-                        (they can still be queued but will early-exit based on this flag).
-                    </p>
-
-                    <div class="form-check form-switch">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            role="switch"
-                            id="inventory-suspended-toggle"
-                            {{ $inventoryUpdateSuspended ? 'checked' : '' }}
-                        >
-                        <label class="form-check-label" for="inventory-suspended-toggle">
-                            Suspend inventory updates
-                        </label>
-                    </div>
-
-                    <small class="text-muted d-block mt-2" id="inventory-status-text">
-                        {{ $inventoryUpdateSuspended
-                            ? 'Inventory updates are currently suspended. Jobs should not update Shopify.'
-                            : 'Inventory updates are active. Jobs will update Shopify as normal.' }}
-                    </small>
-                </div>
-            </div>
-        </div>
-
-        
-
-
     </div>
 </div>
 @endsection
@@ -138,54 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- Inventory update toggle ---
-    const invToggle   = document.getElementById('inventory-suspended-toggle');
-    const invBadge    = document.getElementById('inventory-status-badge');
-    const invStatusEl = document.getElementById('inventory-status-text');
-
-    if (invToggle) {
-        invToggle.addEventListener('change', function () {
-            const suspended = invToggle.checked ? 1 : 0;
-
-            fetch("{{ route('slack_dashboard.inventory-toggle') }}", { // NEW ROUTE
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken,
-                },
-                body: JSON.stringify({ suspended })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network error');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (suspended) {
-                    invBadge.classList.remove('bg-success');
-                    invBadge.classList.add('bg-danger');
-                    invBadge.textContent = 'Suspended';
-                    invStatusEl.textContent = 'Inventory updates are currently suspended. Jobs should not update Shopify.';
-                } else {
-                    invBadge.classList.remove('bg-danger');
-                    invBadge.classList.add('bg-success');
-                    invBadge.textContent = 'Active';
-                    invStatusEl.textContent = 'Inventory updates are active. Jobs will update Shopify as normal.';
-                }
-            })
-            .catch(err => {
-                invToggle.checked = !invToggle.checked;
-                alert('Failed to update inventory update status. Please try again.');
-                console.error(err);
-            });
-        });
-    }
-
-    
-
-    
 });
 </script>
 @endpush
