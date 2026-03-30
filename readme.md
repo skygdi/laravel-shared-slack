@@ -42,7 +42,7 @@ SLACK_ROLE=Worker2
 ### Example
 
 ```php
-use App\Services\SlackService;
+use Skygdi\Slack\SlackGate;
 
 SlackGate::info('SanMar DIP import raw variants finished', [
     'total_rows' => $totalRows,
