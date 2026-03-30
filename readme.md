@@ -5,7 +5,7 @@ A simple Laravel package for sending Slack notifications and viewing them in a d
 ## Installation
 
 ```bash
-composer require pg/slack
+composer require skygdi/slack
 ```
 
 
